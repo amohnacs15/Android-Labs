@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">ModernArtUI</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="more_information">More Information</string>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="title">Inspired by works of artists such as\nPiet Mondrian and Ben Nicholson\n\nClick below to learn more!</string>
+    <string name="dismiss">Dismiss</string>
+    <string name="continueToMoma">Visit MOMA</string>
+
+</resources>

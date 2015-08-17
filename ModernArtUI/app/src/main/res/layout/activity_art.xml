@@ -1,0 +1,143 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="12"
+    android:orientation="vertical">
+
+    <LinearLayout android:id="@+id/redTop"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="4"
+        android:background="@android:color/black"
+        android:paddingBottom="4dp"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <RelativeLayout android:id="@+id/blue1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:paddingRight="4dp"
+            android:paddingEnd="4dp">
+
+            <View android:id="@+id/topLeft"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#0266C8" />
+
+        </RelativeLayout>
+
+        <RelativeLayout android:id="@+id/blueRight"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:paddingLeft="4dp"
+            android:paddingStart="4dp">
+
+            <View android:id="@+id/topRight"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#F2B50F" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
+    <LinearLayout android:id="@+id/redBottom"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="7"
+        android:background="@android:color/black"
+        android:paddingTop="4dp"
+        android:paddingBottom="8dp"
+        android:orientation="horizontal"
+        android:weightSum="4">
+
+        <LinearLayout android:id="@+id/purpleLeft"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:orientation="vertical"
+            android:weightSum="4"
+            android:paddingRight="4dp"
+            android:paddingEnd="4dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:paddingRight="4dp"
+                android:paddingEnd="4dp"
+                android:paddingBottom="0dp">
+
+                <View android:id="@+id/bottomLeftTop"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#F90101" />
+
+            </RelativeLayout>
+
+            <RelativeLayout android:id="@+id/pinkBottom"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="3"
+                android:paddingRight="4dp"
+                android:paddingEnd="4dp"
+                android:paddingTop="8dp">
+
+                <View android:id="@+id/bottomLeftBottom"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/white" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <LinearLayout android:id="@+id/purpleRight"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:orientation="vertical"
+            android:weightSum="5">
+
+            <RelativeLayout android:id="@+id/greenTop"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:paddingBottom="4dp">
+
+                <View android:id="@+id/bottomRightTop"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/white" />
+
+            </RelativeLayout>
+
+            <RelativeLayout android:id="@+id/greenBottom"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="4"
+                android:paddingTop="4dp">
+
+                <View android:id="@+id/bottomRightBottom"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#00933B" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <SeekBar android:id="@+id/colorSeekBar"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:progress="100"
+        android:background="@android:color/white"/>
+
+</LinearLayout>

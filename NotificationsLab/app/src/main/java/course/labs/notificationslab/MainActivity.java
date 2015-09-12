@@ -44,7 +44,6 @@ public class MainActivity extends Activity implements SelectionListener,
 			"msrebeccablack", "ladygaga" };
 	public static final int IS_ALIVE = Activity.RESULT_FIRST_USER;
 	public static final String DATA_REFRESHED_ACTION = "course.labs.notificationslabnew.DATA_REFRESHED";
-	public static final String ALARM_LAUNCHER = "course.labs.notificationslabnew.ALARM_LANUCH";
 	private static final String TAG = "Lab-Notifications";
 
 	// Raw feed file IDs used to reference stored tweet data
@@ -229,7 +228,15 @@ public class MainActivity extends Activity implements SelectionListener,
 		mIsInteractionEnabled = true;
 		allowUserClicks();
 
-	};
+	}
+
+	@Override
+	public void pass() {
+		Downloader downloader = new Downloader(MainActivity.this);
+		downloader.prepAndRunDownloader();
+	}
+
+	;
 
 	// Enable user interaction with FriendFragment
 	private void allowUserClicks() {

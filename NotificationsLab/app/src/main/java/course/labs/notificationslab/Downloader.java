@@ -25,17 +25,30 @@ import java.io.PrintWriter;
  */
 public class Downloader extends android.app.Application {
 
+    public DownloadFinishedListener finisher = null;
+
     public static final String TAG = "Downloader";
     public Boolean downloadCompleted;
     private final int MY_NOTIFICATION_ID = 11151990;
 
+    //Context context;
+
+    String[] completedTweets = new String[] {};
+
+    //MainActivity ma = MainActivity.getInstance();
+
     Context context;
 
+    public Downloader(MainActivity ma) {
 
+         context = ma;
+        finisher = (DownloadFinishedListener) context;
 
-    public Downloader(Context cxt) {
+    }
 
-        context = cxt;
+    public Downloader(Context alarm) {
+
+        context = alarm;
 
     }
 
@@ -46,7 +59,7 @@ public class Downloader extends android.app.Application {
 
         // Prepare them for use with DownloaderTask.
         Integer[] crushArray = new Integer[MainActivity.sRawTextFeedIds.size()];
-        for(int i = 0; i < MainActivity.sRawTextFeedIds.size(); i++) {
+        for (int i = 0; i < MainActivity.sRawTextFeedIds.size(); i++) {
             crushArray[i] = MainActivity.sRawTextFeedIds.get(i);
         }
 
@@ -70,6 +83,12 @@ public class Downloader extends android.app.Application {
         @Override
         protected void onPostExecute(String[] tweets) {
 
+            try {
+                finisher.notifyDataRefreshed(tweets);
+
+            } catch(Exception e) {
+                Log.e(TAG, "Fire! " + String.valueOf(e));
+            }
         }
 
     }
@@ -197,7 +216,9 @@ public class Downloader extends android.app.Application {
                             Toast.makeText(context, notificationSentMsg,
                                     Toast.LENGTH_LONG).show();
 
-                        } else {
+                        } else { //Main activity is still alive
+                            //todo
+
                             Log.e(TAG, success ? successMsg : failMsg);
                             Toast.makeText(context,
                                     success ? successMsg : failMsg,
@@ -211,7 +232,7 @@ public class Downloader extends android.app.Application {
     private void saveTweetsToFile(String[] result) {
         PrintWriter writer = null;
         try {
-            FileOutputStream fos =context.openFileOutput(
+            FileOutputStream fos = context.openFileOutput(
                     MainActivity.TWEET_FILENAME, Context.MODE_PRIVATE);
             writer = new PrintWriter(new BufferedWriter(
                     new OutputStreamWriter(fos)));

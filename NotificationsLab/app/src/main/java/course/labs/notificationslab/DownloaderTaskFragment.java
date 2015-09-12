@@ -2,26 +2,8 @@ package course.labs.notificationslab;
 
 import android.app.Activity;
 import android.app.Fragment;
-import android.app.Notification;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
-import android.content.BroadcastReceiver;
 import android.content.Context;
-import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
-import android.widget.RemoteViews;
-import android.widget.Toast;
-
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
 
 public class DownloaderTaskFragment extends Fragment {
 
@@ -40,21 +22,11 @@ public class DownloaderTaskFragment extends Fragment {
 		// Preserve across reconfigurations
 		setRetainInstance(true);
 
-		prepAndRunDownloader();
-	}
-
-	public void prepAndRunDownloader() {
-		DownloaderTask downloaderAsyncTask = new DownloaderTask();
-
-		// Prepare them for use with DownloaderTask.
-		Integer[] crushArray = new Integer[MainActivity.sRawTextFeedIds.size()];
-		for(int i = 0; i < MainActivity.sRawTextFeedIds.size(); i++) {
-			crushArray[i] = MainActivity.sRawTextFeedIds.get(i);
-		}
-
-		downloaderAsyncTask.execute(crushArray);
+		mCallback.pass();
 
 	}
+
+
 
 	// Assign current hosting Activity to mCallback
 	// Store application context for use by downloadTweets()
@@ -81,6 +53,18 @@ public class DownloaderTaskFragment extends Fragment {
 		mCallback = null;
 	}
 
+	/*public void prepAndRunDownloader() {
+		DownloaderTask downloaderAsyncTask = new DownloaderTask();
+
+		// Prepare them for use with DownloaderTask.
+		Integer[] crushArray = new Integer[MainActivity.sRawTextFeedIds.size()];
+		for(int i = 0; i < MainActivity.sRawTextFeedIds.size(); i++) {
+			crushArray[i] = MainActivity.sRawTextFeedIds.get(i);
+		}
+
+		downloaderAsyncTask.execute(crushArray);
+
+	}
 	// This class must use the downloadTweets method (currently commented
 	// out). Ultimately, it must also pass newly available data back to
 	// the hosting Activity using the DownloadFinishedListener interface.
@@ -291,6 +275,6 @@ public class DownloaderTaskFragment extends Fragment {
 					writer.close();
 				}
 			}
-		}
+		}*/
 	
 }

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="8dp">
+
+    <ImageView android:id="@+id/thumbnail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_gravity="center_vertical"
+        android:src="@drawable/camera_icon"/>
+
+    <TextView android:id="@+id/thumbnailText"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_toRightOf="@+id/thumbnail"
+        android:layout_toLeftOf="@+id/deleteText"
+        android:padding="16dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:gravity="center_vertical"
+        android:textStyle="bold"
+        android:text="text"/>
+
+    <TextView android:id="@+id/deleteText"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="8dp"
+        android:layout_marginEnd="8dp"
+        android:gravity="center_vertical"
+        android:textStyle="bold"
+        android:textColor="@android:color/holo_red_dark"
+        android:text="X"/>
+
+</RelativeLayout>

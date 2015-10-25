@@ -1,9 +1,10 @@
 package edu.vandy.model;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
+import java.util.Map.Entry;
 import java.util.concurrent.Semaphore;
 
 /**
@@ -30,7 +31,7 @@ public class PalantiriManager {
      * A map that associates the @a Palantiri key to the @a boolean
      * values that keep track of whether the key is available.
      */
-    protected ConcurrentHashMap<Palantir, Boolean> mPalantiriMap;
+    protected HashMap<Palantir, Boolean> mPalantiriMap;
 
     /**
      * Constructor creates a PalantiriManager for the List of @a
@@ -43,15 +44,14 @@ public class PalantiriManager {
         // use a "fair" implementation that mediates concurrent access
         // to the given number of Palantiri.
         // TODO -- you fill in here.
-    	
-    	mPalantiriMap = new ConcurrentHashMap<Palantir, Boolean>();
-    	
-    	for(Palantir paladin : palantiri) {
-    		mPalantiriMap.put(paladin, true);
-    	}
-    	
-    	//semaphore action required
-    	mAvailablePalantiri = new Semaphore(palantiri.size(), true);
+
+        //int numPalantiri = palantiri.size();
+        mPalantiriMap = new HashMap<>();
+
+        for (Palantir key : palantiri)
+            mPalantiriMap.put(key, true);
+
+        mAvailablePalantiri = new Semaphore(palantiri.size(), true);
     }
 
     /**
@@ -66,25 +66,27 @@ public class PalantiriManager {
         // this key with "false" to indicate the Palantir isn't
         // available and then return that palantir to the client.
         // TODO -- you fill in here.
-    	
-    	boolean initialFound = false;
-    	
-    	mAvailablePalantiri.acquireUninterruptibly();
-    	
-    	for (Map.Entry<Palantir, Boolean> entry : mPalantiriMap.entrySet()) {
-    		
-    	    Palantir key = entry.getKey();
-    	    Boolean value = entry.getValue();
-    	    
-    	    if(value && initialFound == false) {
-    	    	entry.setValue(false);
-    	    	initialFound = true;
-    	    	return key;
-    	    }
-    	   
-    	}
 
-        return null; 
+        mAvailablePalantiri.acquireUninterruptibly();
+
+        //Serialize the following actions to ensure thread-safety
+        synchronized (this) {
+
+            Iterator<Entry<Palantir, Boolean>> iter = mPalantiriMap.entrySet().iterator();
+
+            //iterate through the Hashmap
+            for (Map.Entry<Palantir, Boolean> entry : mPalantiriMap.entrySet()) {
+                //Find the first key in the HashMap whose value is "true" indicating it is available for use
+                if (entry.getValue() == true) {
+                    //Replace the value with "false" to indicate the Palantir is not available
+                    entry.setValue(false);
+
+                    //return the palantir
+                    return entry.getKey();
+                }
+            }
+            return null;
+        }
     }
 
     /**
@@ -96,25 +98,35 @@ public class PalantiriManager {
         // in a thread-safe manner and release the Semaphore if all
         // works properly.
         // TODO -- you fill in here.
-    	
-    	boolean initialReplace = false;
-    	
-    	for (Map.Entry<Palantir, Boolean> entry : mPalantiriMap.entrySet()) {
-    		
-    	    Palantir key = entry.getKey();
-    	    Boolean value = entry.getValue();
-    	    
-    	    if(!value && initialReplace == false) {
-    	    	entry.setValue(true);
-    	    	initialReplace = true;
-    	    }
-    	    
-    	}
-    	
-    	if(initialReplace)
-    		mAvailablePalantiri.release();
-    		
-    	
+
+        //Do a simple sanity check!
+        if(palantir != null) {
+            //This flag is used to determine whether or not to release the semaphore
+            boolean callRelease = false;
+
+            //Hold the intrisic lock for the duration of this call so it operates in a thread-safe manner
+            synchronized (this) {
+                //Put the "true" value back into HashMap for the palantir key, which also atomically
+                //returns the boolean associated with the palantir.
+                final boolean values = mPalantiriMap.put(palantir, true);
+
+                if(values == false) {
+                    callRelease = true;
+                }
+            }
+            //Check to see whether the Semaphore needs to be released
+            if(callRelease) {
+                //Releae the Semaphore if the @palantir parameter was previously "false"
+                mAvailablePalantiri.release();
+            }
+        }
+
+
+
+  /*      synchronized (this) {
+            mPalantiriMap.put(palantir, true);
+        }
+        mAvailablePalantiri.release();*/
     }
 
     /*

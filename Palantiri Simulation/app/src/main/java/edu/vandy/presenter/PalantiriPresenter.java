@@ -1,12 +1,13 @@
 package edu.vandy.presenter;
 
+import android.content.Intent;
+import android.util.Log;
+
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 
-import android.content.Intent;
-import android.util.Log;
 import edu.vandy.MVP;
 import edu.vandy.common.GenericModel;
 import edu.vandy.common.Utils;
@@ -264,22 +265,23 @@ public class PalantiriPresenter
      *            Number of Being Threads to create.
      */
     private void beginBeingsThreads(int beingCount) {
-        // Create an empty ArrayList, 
-    	//create new BeingThreads that performs the BeingRunnable logic, 
-    	//add them to the ArrayList,
+        // Create an empty ArrayList, create new BeingThreads that
+        // perform the BeingRunnable logic, add them to the ArrayList,
         // and then start all the BeingThreads in the ArrayList.
         // TODO - You fill in here.
-    	
-    	mBeingsThreads = new ArrayList<BeingThread>();
-    	
-    	for(int i = 0; i < beingCount; i++) {
-        	BeingThread beingThread = new BeingThread(new BeingRunnable(i, this), i, this);
-        	mBeingsThreads.add(beingThread);
-    	}
-    	
-    	for(BeingThread babyThread : mBeingsThreads) {
-    		babyThread.start();
-    	}
+
+        mBeingsThreads = new ArrayList<>();
+
+        for (int i = 0; i < beingCount; i++) {
+            //Add the BeingThread to the List
+            BeingThread bt = new BeingThread(new BeingRunnable(i, this), beingCount, this);
+            mBeingsThreads.add(bt);
+        }
+
+        //Start all the threads in the List of BeingThreads
+        for (Thread t: mBeingsThreads) {
+            t.start();
+        }
     }
 
     /**
@@ -291,22 +293,23 @@ public class PalantiriPresenter
         // finish and then calls mView.get().done() to inform the View
         // layer that the simulation is done.
         // @@ TODO -- you fill in here.
-    	
-    	new Thread(new Runnable() {
-			@Override
-			public void run() {
 
-				for(BeingThread babyThread : mBeingsThreads) {
-					try {
-						babyThread.join();
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					}
-				}
-				
-				mView.get().done();
-			}
-    	});
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                //Join with all the BeingThreads
+                for (Thread t : mBeingsThreads) {
+                    try {
+                        t.join();
+                    } catch (InterruptedException e) {
+                        //if we get interrupted while waiting, stop everything
+                        shutdown();
+                    }
+                    //Tell the UI we're done
+                    mView.get().done();
+
+                }}
+        }).start();
     }
 
     /**

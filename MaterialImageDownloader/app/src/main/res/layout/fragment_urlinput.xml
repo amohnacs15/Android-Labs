@@ -1,0 +1,40 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.androidtitan.materialimagedownloader.URLInputFragment"
+    android:layout_marginTop="?android:attr/actionBarSize">
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/input_layout_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <EditText android:id="@+id/editText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/edittexthint"/>
+
+    </android.support.design.widget.TextInputLayout>
+
+    <TextView
+        android:id="@+id/urlButtonTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/url_adder"
+        android:layout_below="@+id/input_layout_name"
+        android:gravity="center_horizontal"
+        android:padding="16dp"
+        android:textStyle="bold"
+        android:textColor="@color/colorPrimaryDark"/>
+
+    <ListView android:id="@android:id/list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/urlButtonTextView"
+        android:divider="@null"
+        android:dividerHeight="0dp"/>
+
+</RelativeLayout>

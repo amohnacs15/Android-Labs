@@ -1,0 +1,18 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.androidtitan.materialimagedownloader.GridViewFragment"
+    android:layout_marginTop="?android:attr/actionBarSize"
+    android:padding="8dp">
+
+    <GridView android:id="@+id/imageGridView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:numColumns="auto_fit"
+        android:columnWidth="90dp"
+        android:horizontalSpacing="10dp"
+        android:verticalSpacing="10dp"
+        android:gravity="center"
+        android:stretchMode="columnWidth"/>
+
+</FrameLayout>

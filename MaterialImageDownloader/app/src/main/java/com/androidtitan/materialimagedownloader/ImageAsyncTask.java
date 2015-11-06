@@ -71,7 +71,7 @@ public class ImageAsyncTask
         //the image is the view that we are using
         //this is on the UI thread so we just need to make a reference to the GridView
         //image.setImageBitmap(result);
-        Log.e(TAG, String.valueOf(bitmap));
+        Log.e(TAG, "onPostExecute() - " + String.valueOf(bitmap));
 
         ((LandingActivity) activity).updateFragmentGridView(bitmap);
 

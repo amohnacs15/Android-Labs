@@ -26,7 +26,7 @@ public class URLInputFragment extends ListFragment {
     public ArrayAdapter adapter;
 
     //View elements
-    private static EditText inputEditText;
+    public static EditText inputEditText;
     private static TextView addUrlTextView;
 
     //Data objects

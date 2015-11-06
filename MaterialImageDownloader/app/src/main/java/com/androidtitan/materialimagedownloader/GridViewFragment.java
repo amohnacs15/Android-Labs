@@ -22,6 +22,7 @@ import java.util.ArrayList;
 public class GridViewFragment extends Fragment {
     private String TAG = getClass().getSimpleName();
     public static String PASSABLE_EXTRA= "passableBitMapExtra";
+    public static String PASSABLE_INT = "passableCountInteger";
 
     public GridView imageGridView;
     public MyGridAdapter adapter;
@@ -61,17 +62,18 @@ public class GridViewFragment extends Fragment {
                 //compress bitmap
                 //todo we need to find a way to pass them all or reference them all from that activity
                 ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                bitmaps.get(0).compress(Bitmap.CompressFormat.PNG, 100, stream);
+                bitmaps.get(position).compress(Bitmap.CompressFormat.PNG, 100, stream);
                 byte[] bytes = stream.toByteArray();
-                //setresult.putExtra("BMP",bytes);
 
-                Intent intent = new Intent(getActivity(), ImageActivity.class);
+                Intent intent = new Intent(getActivity(), ViewPagerActivity.class);
                 intent.putExtra(PASSABLE_EXTRA, bytes);
+                intent.putExtra(PASSABLE_INT, position);
 
                 ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(
                     getActivity(), new Pair<View, String>(view, getString(R.string.image_transition)));
 
                 ActivityCompat.startActivity(getActivity(), intent, options.toBundle());
+                //ActivityCompat.startActivity(
 
             }
         });

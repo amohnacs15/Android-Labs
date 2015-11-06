@@ -7,10 +7,9 @@
     android:padding="8dp"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:showIn="@layout/activity_image"
-    tools:context="com.androidtitan.materialimagedownloader.ImageActivity">
+    tools:context="com.androidtitan.materialimagedownloader.ViewPagerActivity">
 
     <ImageView android:id="@+id/haterFrame"
-        android:transitionName="@string/image_transition"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

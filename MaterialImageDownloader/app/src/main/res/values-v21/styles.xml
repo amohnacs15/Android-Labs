@@ -2,6 +2,10 @@
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar"></style>
     <style name="AppTheme.Base" parent="android:Theme.Material.Light">
 
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+
         <item name="android:windowContentTransitions">true</item>
 
         <item name="android:windowEnterTransition">@android:transition/slide_bottom</item>

@@ -53,6 +53,7 @@ public class ImageAsyncTask
 
             if(bitmap != null) {
                 Log.e(TAG, "Bitmap found!");
+                return bitmap;
             }
             else{
                 Log.e(TAG, "Bitmap not found");
@@ -62,7 +63,7 @@ public class ImageAsyncTask
             e.printStackTrace();
         }
 
-        return bitmap;
+        return null;
     }
 
     @Override
@@ -73,7 +74,9 @@ public class ImageAsyncTask
         //image.setImageBitmap(result);
         Log.e(TAG, "onPostExecute() - " + String.valueOf(bitmap));
 
-        ((LandingActivity) activity).updateFragmentGridView(bitmap);
+        if(bitmap != null) {
+            ((LandingActivity) activity).updateFragmentGridView(bitmap);
+        }
 
     }
 }

@@ -107,6 +107,12 @@ public class LandingActivity extends Activity implements UpdateURLsInterface {
                     transaction.addToBackStack(null);
                     transaction.commit();
 
+                    earthsLastHope.clear();
+                    urlFrag.urlItems.clear();
+                    urlFrag.adapter.notifyDataSetChanged();
+
+                    urlFrag.getListView().invalidate();
+
                 } else {
                     //todo: cool material design animation
                 }

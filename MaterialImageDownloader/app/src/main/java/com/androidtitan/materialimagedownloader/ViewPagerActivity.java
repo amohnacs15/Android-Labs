@@ -5,7 +5,6 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.widget.ImageView;
 
@@ -13,6 +12,8 @@ import java.util.ArrayList;
 
 public class ViewPagerActivity extends AppCompatActivity {
     private String TAG= getClass().getSimpleName();
+
+    public static String RETURN_EXTRA = "returnToGridFragExtra";
 
     BitmapDownloadCollection collection = BitmapDownloadCollection.getInstance(this);
 
@@ -29,8 +30,8 @@ public class ViewPagerActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_viewpager);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        //setSupportActionBar(toolbar);
 
         bitmapArrayList = collection.getBitmapArrayList();
 
@@ -59,12 +60,5 @@ public class ViewPagerActivity extends AppCompatActivity {
 
         /*ImageView imageView = (ImageView) findViewById(R.id.haterFrame);
         imageView.setImageBitmap(bmp);*/
-
-
-
-
-
-
     }
-
 }

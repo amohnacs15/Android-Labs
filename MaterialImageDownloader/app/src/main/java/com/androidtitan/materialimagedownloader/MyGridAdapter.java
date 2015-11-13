@@ -19,18 +19,11 @@ public class MyGridAdapter extends BaseAdapter{
     private Context context;
     public ArrayList<Bitmap> sweet;
 
-    public MyGridAdapter() {
-
-    }
-
-    public MyGridAdapter(Context c) {
-        this.context = c;
-        this.sweet = new ArrayList<Bitmap>();
-    }
 
     public MyGridAdapter(Context cont, ArrayList<Bitmap> bitter) {
         this.context = cont;
         this.sweet = bitter;
+
     }
 
     @Override
@@ -41,20 +34,16 @@ public class MyGridAdapter extends BaseAdapter{
         if(convertView == null) {
 
             gridViewItem = new ImageView(context);
+            gridViewItem.setScaleType(ImageView.ScaleType.CENTER);
+            gridViewItem.setPadding(8, 8, 8, 8);
+            //Bitmap tinybitmap = sweet.get(position);
+            Log.e(TAG, "adapter item " + String.valueOf(sweet.get(position)));
 
+            gridViewItem.setImageBitmap(sweet.get(position));
         }
         else {
             gridViewItem = (ImageView) convertView;
         }
-
-        gridViewItem.setScaleType(ImageView.ScaleType.CENTER);
-        gridViewItem.setPadding(8, 8, 8, 8);
-
-        //original
-        Bitmap tinybitmap = sweet.get(position);
-        Log.e(TAG, "adapter item " + position + " - " + String.valueOf(tinybitmap));
-
-        gridViewItem.setImageBitmap(tinybitmap);
 
         return gridViewItem;
     }
@@ -66,11 +55,13 @@ public class MyGridAdapter extends BaseAdapter{
 
     @Override
     public Object getItem(int position) {
-        return sweet.get(position);
+        return null;
     }
 
     @Override
     public long getItemId(int position) {
         return 0;
     }
+
+
 }

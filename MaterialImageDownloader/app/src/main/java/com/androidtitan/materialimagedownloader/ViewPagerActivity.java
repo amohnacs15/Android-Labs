@@ -1,7 +1,6 @@
 package com.androidtitan.materialimagedownloader;
 
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -51,12 +50,12 @@ public class ViewPagerActivity extends AppCompatActivity {
         pagerAdapter = new MyPagerAdapter(this, bitmapArrayList);
         viewPager.setAdapter(pagerAdapter);
 
-        bitmapIndex = getIntent().getIntExtra(GridViewFragment.PASSABLE_INT, -1);
+        bitmapIndex = getIntent().getIntExtra(GridViewActivity.PASSABLE_INT, -1);
         viewPager.setCurrentItem(bitmapIndex);
 
-        //decompress
-        byte[] bytes = getIntent().getByteArrayExtra(GridViewFragment.PASSABLE_EXTRA);
-        Bitmap bmp = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+//        //decompress
+//        byte[] bytes = getIntent().getByteArrayExtra(GridViewFragment.PASSABLE_EXTRA);
+//        Bitmap bmp = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
 
         /*ImageView imageView = (ImageView) findViewById(R.id.haterFrame);
         imageView.setImageBitmap(bmp);*/

@@ -2,8 +2,7 @@ package com.androidtitan.materialimagedownloader;
 
 import android.app.Activity;
 import android.app.FragmentTransaction;
-import android.graphics.Bitmap;
-import android.graphics.Color;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -17,19 +16,16 @@ import android.widget.Toast;
 import android.widget.Toolbar;
 
 import java.util.ArrayList;
-import java.util.concurrent.LinkedBlockingQueue;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
 
 public class LandingActivity extends Activity implements UpdateURLsInterface {
     private String TAG = getClass().getSimpleName();
     public static String URLEXTRA = "urlArrayListExtra";
+    public static String BTN_X_EXTRA = "buttonXExtra";
+    public static String BTN_Y_EXTRA = "buttonYExtra";
 
-    BitmapDownloader downloader;
-    BitmapDownloadCollection collection = BitmapDownloadCollection.getInstance(this);
+    GridViewActivity gridActivity = new GridViewActivity();
 
     private URLInputFragment urlFrag = new URLInputFragment();
-    private GridViewFragment gridViewFragment = new GridViewFragment();
 
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
@@ -65,17 +61,17 @@ public class LandingActivity extends Activity implements UpdateURLsInterface {
         final FloatingActionButton downloadFab = (FloatingActionButton) findViewById(R.id.downloadFab);
 
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        transaction.add(R.id.container, urlFrag);
+        transaction.replace(R.id.container, urlFrag);
         transaction.addToBackStack(null);
         transaction.commit();
 
         asyncArray = new ArrayList<ImageAsyncTask>();
         earthsLastHope = new ArrayList<String>();
 
-
         deleteFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 if(urlFrag != null && urlFrag.isVisible()) {
 
                     Snackbar.make(view, "Deleted", Snackbar.LENGTH_LONG)
@@ -100,12 +96,13 @@ public class LandingActivity extends Activity implements UpdateURLsInterface {
                         Log.e(TAG, item);
                     }
 
-                    downloadActions(earthsLastHope);
 
-                    FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                    transaction.replace(R.id.container, gridViewFragment, "gridViewFragment");
-                    transaction.addToBackStack(null);
-                    transaction.commit();
+                    Intent intent = new Intent(LandingActivity.this, GridViewActivity.class);
+                    intent.putExtra(URLEXTRA, earthsLastHope);
+                    intent.putExtra(BTN_X_EXTRA, (int) downloadFab.getX());
+                    intent.putExtra(BTN_Y_EXTRA, (int) downloadFab.getY());
+                    startActivity(intent);
+
 
                     earthsLastHope.clear();
                     urlFrag.urlItems.clear();
@@ -119,42 +116,6 @@ public class LandingActivity extends Activity implements UpdateURLsInterface {
             }
         });
 
-    }
-
-    public void updateFragmentGridView(Bitmap bm) {
-
-        bm = grayScaleFilter(bm);
-
-        downloader = new BitmapDownloader(bm);
-        collection.add2BitmapArrayList(downloader);
-
-        GridViewFragment gridFrag = (GridViewFragment) getFragmentManager().findFragmentByTag("gridViewFragment");
-
-        gridFrag.bitmaps.add(bm);
-        gridFrag.adapter.notifyDataSetChanged();
-        //gridFrag.imageGridView.invalidateViews();
-
-    }
-
-
-    public void downloadActions(ArrayList<String> controlActionsAL) {
-
-        ArrayList<ImageAsyncTask> asyncArray = new ArrayList<ImageAsyncTask>();
-
-        for(String urlString : controlActionsAL) {
-            ImageAsyncTask imageAsyncTask = new ImageAsyncTask(this, urlString);
-            asyncArray.add(imageAsyncTask);
-        }
-
-        ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(
-                controlActionsAL.size(), controlActionsAL.size(),
-                1, TimeUnit.MINUTES, new LinkedBlockingQueue());
-
-        Log.e(TAG, "List size: " + controlActionsAL.size());
-
-        for(ImageAsyncTask imageAsyncTask : asyncArray) {
-            imageAsyncTask.executeOnExecutor(threadPoolExecutor);
-        }
     }
 
     public void initializeNavDrawer() {
@@ -176,71 +137,7 @@ public class LandingActivity extends Activity implements UpdateURLsInterface {
         earthsLastHope.add(string);
     }
 
-    /**
-     * Apply a grayscale filter to the @a pathToImageFile and return a
-     * Uri to the filtered image.
-     */
-    public static Bitmap grayScaleFilter(Bitmap originalImage) {
-//        Bitmap originalImage =
-//                decodeImageFromPath(context,
-//                        pathToImageFile);
 
-        // Bail out if something is wrong with the image.
-        if (originalImage == null)
-            return null;
 
-        Bitmap grayScaleImage =
-                originalImage.copy(originalImage.getConfig(),
-                        true);
 
-        boolean hasTransparent = grayScaleImage.hasAlpha();
-        int width = grayScaleImage.getWidth();
-        int height = grayScaleImage.getHeight();
-
-        // A common pixel-by-pixel grayscale conversion algorithm
-        // using values obtained from en.wikipedia.org/wiki/Grayscale.
-        for (int i = 0; i < height; ++i) {
-            // Break out if we've been interrupted.
-            if (Thread.interrupted())
-                return null;
-
-            for (int j = 0; j < width; ++j) {
-                // Check if the pixel is transparent in the original
-                // by checking if the alpha is 0.
-                if (hasTransparent
-                        && ((grayScaleImage.getPixel(j, i)
-                        & 0xff000000) >> 24) == 0)
-                    continue;
-
-                // Convert the pixel to grayscale.
-                int pixel = grayScaleImage.getPixel(j, i);
-                int grayScale =
-                        (int) (Color.red(pixel) * .299
-                                + Color.green(pixel) * .587
-                                + Color.blue(pixel) * .114);
-                grayScaleImage.setPixel(j, i,
-                        Color.rgb(grayScale,
-                                grayScale,
-                                grayScale));
-            }
-        }
-
-        return grayScaleImage;
-    }
-
-    /*@Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_landing, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-        return super.onOptionsItemSelected(item);
-    }*/
 }

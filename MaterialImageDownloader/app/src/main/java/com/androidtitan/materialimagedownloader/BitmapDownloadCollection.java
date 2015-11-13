@@ -1,6 +1,7 @@
 package com.androidtitan.materialimagedownloader;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 
 import java.util.ArrayList;
 
@@ -35,11 +36,24 @@ public class BitmapDownloadCollection {
         return bitmapArrayList;
     }
 
+    public ArrayList<Bitmap> getAllbitmaps() {
+        ArrayList<Bitmap> bitmapper = new ArrayList<>();
+
+        for(BitmapDownloader bm : bitmapArrayList) {
+            bitmapper.add(bm.getBitmap());
+        }
+        return bitmapper;
+    }
+
     public void setBitmapArrayList(ArrayList<BitmapDownloader> bitmapArrayList) {
         this.bitmapArrayList = bitmapArrayList;
     }
 
     public void add2BitmapArrayList(BitmapDownloader bmer) {
         bitmapArrayList.add(bmer);
+    }
+
+    public void wipeTable() {
+
     }
 }

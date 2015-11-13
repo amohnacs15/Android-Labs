@@ -9,5 +9,6 @@
     <string name="title_activity_image">ImageActivity</string>
 
     <string name="image_transition">transition:IMAGE</string>
+    <string name="title_activity_grid_view">GridViewActivity</string>
 
 </resources>

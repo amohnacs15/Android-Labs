@@ -9,7 +9,7 @@ Coursera's Mobile Cloud Computing with Android specialization program.
  * [Material Image Downloader](#downer)
 * [Programming Mobile Applications for Handheld Systems: Part 1](#part1)
  * [Activity Lab](#act1)
- * [Intens Lab](#ints)
+ * [Intents Lab](#ints)
  * [Permissions Lab](#perms)
  * [Fragments Lab](#frags)
  * [UI Lab](#uilabs)

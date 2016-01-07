@@ -4,12 +4,28 @@
         "source": "/Users/amohnacs/Desktop/Android by Coursera/POSA-15-master/assignments/A1-Android-App/app/src/main/res/layout/display_images_activity.xml"
     },
     {
+        "merged": "/Users/amohnacs/GitHub/Android Labs/Download Images Viewer/app/build/intermediates/res/merged/debug/layout/download_images_activity.xml",
+        "source": "/Users/amohnacs/GitHub/Android Labs/Download Images Viewer/app/src/main/res/layout/download_images_activity.xml"
+    },
+    {
         "merged": "/Users/amohnacs/Desktop/Android by Coursera/POSA-15-master/assignments/A1-Android-App/app/build/intermediates/res/merged/debug/layout/download_images_activity.xml",
         "source": "/Users/amohnacs/Desktop/Android by Coursera/POSA-15-master/assignments/A1-Android-App/app/src/main/res/layout/download_images_activity.xml"
     },
     {
         "merged": "/Users/amohnacs/Desktop/Android by Coursera/POSA-15-master/assignments/A1-Android-App/app/build/intermediates/res/merged/debug/layout/image_detail_swipe_activity.xml",
         "source": "/Users/amohnacs/Desktop/Android by Coursera/POSA-15-master/assignments/A1-Android-App/app/src/main/res/layout/image_detail_swipe_activity.xml"
+    },
+    {
+        "merged": "/Users/amohnacs/GitHub/Android Labs/Download Images Viewer/app/build/intermediates/res/merged/debug/layout/fragment_collection_detail.xml",
+        "source": "/Users/amohnacs/GitHub/Android Labs/Download Images Viewer/app/src/main/res/layout/fragment_collection_detail.xml"
+    },
+    {
+        "merged": "/Users/amohnacs/GitHub/Android Labs/Download Images Viewer/app/build/intermediates/res/merged/debug/layout/image_detail_swipe_activity.xml",
+        "source": "/Users/amohnacs/GitHub/Android Labs/Download Images Viewer/app/src/main/res/layout/image_detail_swipe_activity.xml"
+    },
+    {
+        "merged": "/Users/amohnacs/GitHub/Android Labs/Download Images Viewer/app/build/intermediates/res/merged/debug/layout/display_images_activity.xml",
+        "source": "/Users/amohnacs/GitHub/Android Labs/Download Images Viewer/app/src/main/res/layout/display_images_activity.xml"
     },
     {
         "merged": "/Users/amohnacs/Desktop/Android by Coursera/POSA-15-master/assignments/A1-Android-App/app/build/intermediates/res/merged/debug/layout/fragment_collection_detail.xml",

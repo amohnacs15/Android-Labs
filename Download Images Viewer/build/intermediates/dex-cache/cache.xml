@@ -2,11 +2,11 @@
 <items version="2" >
 
     <item
-        jar="/Users/amohnacs/.gradle/caches/modules-2/files-2.1/com.jayway.android.robotium/robotium-solo/5.5.3/d406c703b46065ecc4028890903c1596f38ad5dc/robotium-solo-5.5.3.jar"
+        jar="/Users/amohnacs/GitHub/Android Labs/Download Images Viewer/app/libs/android-support-v13.jar"
         jumboMode="false"
         revision="23.0.2"
-        sha1="d406c703b46065ecc4028890903c1596f38ad5dc">
-        <dex dex="/Users/amohnacs/Desktop/Android by Coursera/POSA-15-master/assignments/A1-Android-App/app/build/intermediates/pre-dexed/androidTest/debug/robotium-solo-5.5.3_c97bf6c3a7dccb2f1939065a92b76031c41e139a.jar" />
+        sha1="94c00ce88ca3ba7e8d94f1d9b7a7522343712c41">
+        <dex dex="/Users/amohnacs/GitHub/Android Labs/Download Images Viewer/app/build/intermediates/pre-dexed/debug/android-support-v13_1c64fb8ac9bc4fcf04796f0fcd4dbc4c65406f55.jar" />
     </item>
 
 </items>

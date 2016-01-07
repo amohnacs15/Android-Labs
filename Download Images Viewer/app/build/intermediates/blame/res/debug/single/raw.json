@@ -1,5 +1,9 @@
 [
     {
+        "merged": "/Users/amohnacs/GitHub/Android Labs/Download Images Viewer/app/build/intermediates/res/merged/debug/raw/dougs.jpg",
+        "source": "/Users/amohnacs/GitHub/Android Labs/Download Images Viewer/app/src/main/res/raw/dougs.jpg"
+    },
+    {
         "merged": "/Users/amohnacs/Desktop/Android by Coursera/POSA-15-master/assignments/A1-Android-App/app/build/intermediates/res/merged/debug/raw/dougs.jpg",
         "source": "/Users/amohnacs/Desktop/Android by Coursera/POSA-15-master/assignments/A1-Android-App/app/src/main/res/raw/dougs.jpg"
     }

@@ -51,16 +51,15 @@ public class RequestMessage extends RequestReplyMessageBase {
 
         // Set the URL to the image file into the Bundle.
         // TODO -- you fill in here.
-        bundle.putParcelable(IMAGE_URL, url);
+        requestMessage.setImageURL(url);
 
         // Set the pathname to the directory into the Bundle.
         // TODO -- you fill in here.
-        bundle.putParcelable(DIRECTORY_PATHNAME, directoryPathname);
+        requestMessage.setDirectoryPathname(directoryPathname);
 
         // Set the request code into the Bundle.
         // TODO -- you fill in here.
-        bundle.putInt(REQUEST_CODE, requestCode);
-
+        requestMessage.setRequestCode(requestCode);
 
         // Return the message to the caller.
         return requestMessage;

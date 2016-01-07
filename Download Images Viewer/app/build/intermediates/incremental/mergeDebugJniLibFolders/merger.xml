@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merger version="3"><dataSet config="main"><source path="/Users/amohnacs/Desktop/Android by Coursera/POSA-15-master/assignments/A1-Android-App/app/src/main/jniLibs"/></dataSet><dataSet config="debug"><source path="/Users/amohnacs/Desktop/Android by Coursera/POSA-15-master/assignments/A1-Android-App/app/src/debug/jniLibs"/></dataSet></merger>
+<merger version="3"><dataSet config="main"><source path="/Users/amohnacs/GitHub/Android Labs/Download Images Viewer/app/src/main/jniLibs"/></dataSet><dataSet config="debug"><source path="/Users/amohnacs/GitHub/Android Labs/Download Images Viewer/app/src/debug/jniLibs"/></dataSet></merger>

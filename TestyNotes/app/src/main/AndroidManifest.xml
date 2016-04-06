@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.androidhunter.testynotes">
+
+    <!-- To auto-complete the email text field in the login form with the user's emails -->
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.READ_PROFILE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+
+    <!-- The permissions I actually entered -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <application
+        android:name=".ParseApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <meta-data
+        android:name="com.parse.APPLICATION_ID"
+        android:value="1LSvEWVbmGEZLEzotiEfcLlFNAbZ5YVPoSKAuOTv" />
+        <meta-data
+            android:name="com.parse.CLIENT_KEY"
+            android:value="aTVKaSgXvHgjlgsPxZZyOEMuzIDqtgeEBVGq6mIJ" />
+
+        <activity
+            android:name=".ListActivity"
+            android:parentActivityName=".LoginActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.androidhunter.testynotes.LoginActivity" />
+        </activity>
+        <activity
+            android:name=".EditNoteActivity"
+            android:label="@string/title_activity_edit_note">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.androidhunter.testynotes.ListActivity" />
+        </activity>
+        <activity android:name=".LoginActivity">
+        </activity>
+        <activity android:name=".SignUpActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.androidhunter.testynotes.LoginActivity" />
+        </activity>
+    </application>
+
+</manifest>
